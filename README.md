@@ -1,6 +1,6 @@
 # Screenplay Prompt
 
-A screenplay-themed shell prompt that transforms your terminal into a movie script.
+<img width="1917" height="1143" alt="Screenshot from 2026-06-16 20-49-26" src="https://github.com/user-attachments/assets/3584dfd3-746f-4ac9-bc41-466270151f05" />
 
 ## Features
 

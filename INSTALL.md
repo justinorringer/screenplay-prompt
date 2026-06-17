@@ -116,7 +116,18 @@ Or simply run `clear` and open a new terminal.
 
 ### Transitions not right-aligned
 
-Make sure your terminal supports `tput cols`. Most modern terminals do.
+Make sure your terminal supports `tput cols`. Most modern terminals do. If `tput` is unavailable, the prompt automatically falls back to 80-column width.
+
+### Non-TTY environments
+
+Screenplay-prompt gracefully degrades in non-interactive environments (scripts, pipes, cron jobs):
+- Title page is skipped
+- Terminal size detection falls back to defaults (80x24)
+- All features remain functional
+
+### Missing shuf on macOS
+
+No action needed. Screenplay-prompt automatically detects missing `shuf` command and uses a bash-native random line picker. This is common on BSD/macOS systems and is handled transparently.
 
 ### Custom config directory
 
@@ -126,6 +137,13 @@ Set a custom location for config files:
 export SCREENPLAY_CONFIG="$HOME/.screenplay"
 source screenplay-prompt.sh
 ```
+
+### Empty or missing config files
+
+All config files are optional. If missing or empty, sensible defaults are used:
+- `locations`: Falls back to "INT. RICK'S"
+- `transitions`: Falls back to "CUT TO:"
+- `title`: Uses built-in default title page
 
 ## Uninstall
 

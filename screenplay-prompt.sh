@@ -1,6 +1,10 @@
 #!/bin/bash
 # screenplay-prompt.sh
 # A screenplay-themed shell prompt plugin
+
+# Reset title page flag on each source (ensures fresh display per terminal)
+unset SCREENPLAY_TITLE_SHOWN
+
 # Configuration directory
 SCREENPLAY_CONFIG="${SCREENPLAY_CONFIG:-$HOME/.config/screenplay}"
 SCREENPLAY_LOCATIONS="$SCREENPLAY_CONFIG/locations"
@@ -415,7 +419,7 @@ PROMPT_COMMAND="__screenplay_update_cache; __screenplay_render_prompt${PROMPT_CO
 PS1='\$ '
 
 # Display title page on first load (only in interactive shells)
-if [ -z "$SCREENPLAY_TITLE_SHOWN" ] && [ "$PS1" ]; then
-    export SCREENPLAY_TITLE_SHOWN=1
+if [ -z "$SCREENPLAY_TITLE_SHOWN" ] && [[ $- == *i* ]]; then
+    SCREENPLAY_TITLE_SHOWN=1
     __screenplay_title_page
 fi
